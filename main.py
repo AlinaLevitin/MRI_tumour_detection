@@ -5,9 +5,8 @@ import matplotlib.image as mpimg
 import random
 import tensorflow as tf
 
-from sklearn.model_selection import train_test_split
-
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
+from sklearn.metrics import confusion_matrix
 
 
 cwd = os.getcwd()
@@ -49,7 +48,7 @@ def view_random_image(target_dir, target_class):
 tf.random.set_seed(42)
 
 # preprocess data (scale)
-datagen = ImageDataGenerator(rescale=1./255)
+datagen = ImageDataGenerator(rescale=1./255, validation_split=0.1)
 
 
 # Setup paths to our data directory
@@ -57,14 +56,23 @@ datagen = ImageDataGenerator(rescale=1./255)
 dir_path = cwd + "\\data\\brain_tumor_dataset\\"
 
 # Import data from directories and trun it into batches with augmented data
-data = datagen.flow_from_directory(directory=dir_path, batch_size=32, target_size=(224, 224), class_mode='binary', seed=42)
-
-# train_data, test_data = train_test_split(data, test_size=0.2, random_state=42)
+training_data = datagen.flow_from_directory(directory=dir_path,
+                                            batch_size=32,
+                                            target_size=(224, 224),
+                                            class_mode='binary',
+                                            subset="training",
+                                            seed=42)
+validation_data = datagen.flow_from_directory(directory=dir_path,
+                                              batch_size=32,
+                                              target_size=(224, 224),
+                                              class_mode='binary',
+                                              subset="validation",
+                                              seed=42)
 
 # BUILD CNN:
 
 # construct the model
-model_1 = tf.keras.models.Sequential([
+model = tf.keras.models.Sequential([
                                       tf.keras.layers.Conv2D(filters=10, kernel_size=3, activation='relu', input_shape=(224, 224, 3)),
                                       tf.keras.layers.Conv2D(filters=10, kernel_size=3, activation='relu'),
                                       tf.keras.layers.MaxPool2D(pool_size=2, padding='valid'),
@@ -76,7 +84,15 @@ model_1 = tf.keras.models.Sequential([
                                       ])
 
 # Compile the model
-model_1.compile(loss='binary_crossentropy', optimizer=tf.keras.optimizers.Adam(), metrics=['accuracy'])
+model.compile(loss='binary_crossentropy', optimizer=tf.keras.optimizers.Adam(), metrics=['accuracy'])
 
 # fit the data
-history_1 = model_1.fit(data, epochs=5, steps_per_epoch=len(data))
+history_1 = model.fit(training_data, epochs=7, steps_per_epoch=len(training_data))
+
+model.evaluate(validation_data)
+
+y_pred = model.predict(validation_data)
+
+y_true = validation_data.labels
+
+cm = confusion_matrix(y_true, tf.round(y_pred))
