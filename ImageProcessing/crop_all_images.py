@@ -49,4 +49,6 @@ def crop_all_images(target_dir, target_classes=('yes', 'no')):
             # saving the image in the selected folder
             plt.savefig(f'{name}.png', format='png')
 
+            print(f'cropped image {image}')
+
     print('Finished cropping all images')
