@@ -64,5 +64,3 @@ def plot_train_test(target_dir):
     plt.legend()
 
     plt.show()
-
-
