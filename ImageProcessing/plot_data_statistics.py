@@ -8,7 +8,6 @@ def plot_data_statistics(target_dir):
 
     :param target_dir: target_dir: target directory (path)
     """
-
     # collecting all images in both classes
     yes_images = os.listdir(target_dir + '\\yes')
     no_images = os.listdir(target_dir + '\\no')

@@ -7,7 +7,19 @@ import shutil
 from sklearn.model_selection import train_test_split
 
 
-def split_data(data_dir, test):
+def split_data(data_dir, test=0.2):
+
+    print('Deleting old files...')
+    os.chdir(data_dir)
+    target_dir = os.path.dirname(os.getcwd()) + '\\aug_data'
+
+    for files in os.listdir(target_dir):
+        path = os.path.join(target_dir, files)
+        try:
+            shutil.rmtree(path)
+        except OSError:
+            os.remove(path)
+    print('Finished deleting files')
 
     print('Splitting data...')
 
@@ -20,14 +32,18 @@ def split_data(data_dir, test):
         train_images, test_images = train_test_split(images, test_size=test, random_state=0)
 
         for train_image in train_images:
+            os.makedirs(os.path.dirname(os.path.dirname(os.getcwd())) + '\\aug_data\\train\\' + label, exist_ok=True)
             original = data_dir + '\\' + label + '\\' + train_image
-            target = os.path.dirname(os.getcwd()) + '\\aug_data\\train' + label + '\\' + train_image
-            shutil.copyfile(original, target)
+            target = os.path.dirname(os.path.dirname(os.getcwd())) + '\\aug_data\\train\\' + label + '\\' + train_image
+            shutil.copy2(src=original, dst=target)
             print(f'copied {train_image} to {target}')
 
         for test_image in test_images:
+            os.makedirs(os.path.dirname(os.path.dirname(os.getcwd())) + '\\aug_data\\test\\' + label, exist_ok=True)
             original = data_dir + '\\' + label + '\\' + test_image
-            target = os.path.dirname(os.getcwd()) + '\\aug_data\\test' + label + '\\' + test_image
-            shutil.copyfile(original, target)
+            target = os.path.dirname(os.path.dirname(os.getcwd())) + '\\aug_data\\test\\' + label + '\\' + test_image
+            shutil.copy2(original, target)
             print(f'copied {test_image} to {target}')
+
+    print('Finished splitting data')
 
