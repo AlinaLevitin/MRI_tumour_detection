@@ -6,6 +6,13 @@ import matplotlib.pyplot as plt
 
 
 def test_model(model, test_data):
+    """
+    function to test the model with test_data
+
+    :param model: selected tensorflow.keras.sequential model
+    :param test_data: test_data
+    :return: test the accuracy on the test data and creates a confusion matrix
+    """
 
     # evaluating the performance of the model with the test data
     model.evaluate(test_data)
@@ -64,3 +71,5 @@ def test_model(model, test_data):
                  horizontalalignment="center",
                  color="white" if cm[i, j] > threshold else "black",
                  size=15)
+
+    plt.show()

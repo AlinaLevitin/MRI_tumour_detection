@@ -1,6 +1,3 @@
-"""
-Function to crop all images in all classes
-"""
 import os
 
 import matplotlib.pyplot as plt
@@ -13,6 +10,7 @@ def crop_all_images(target_dir, target_classes=('yes', 'no')):
     crops all images and saves them to new folder named "cropped_brain_tumor_dataset"
     :param target_dir: target directory (path)
     :param target_classes: selected classes to crop (default is both classes)
+    :return cropping all images
     """
 
     print('Cropping all Images now...')

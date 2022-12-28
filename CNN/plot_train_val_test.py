@@ -3,6 +3,13 @@ import matplotlib.pyplot as plt
 
 
 def plot_train_val_test(training_data, validation_data, test_data):
+    """
+    function to plot data statistics after using ImageDataGenerator
+    :param training_data: training data
+    :param validation_data: validation data
+    :param test_data: test data
+    :return: creates plot with data distribution
+    """
     # get the value counts
     train_no = np.unique(training_data.classes, return_counts=True)[1][0]
     train_yes = np.unique(training_data.classes, return_counts=True)[1][1]

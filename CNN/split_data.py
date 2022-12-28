@@ -1,6 +1,3 @@
-"""
-Splits the data to train, validation and test subsets randomly
-"""
 import os
 import shutil
 
@@ -8,6 +5,12 @@ from sklearn.model_selection import train_test_split
 
 
 def split_data(data_dir, test=0.2):
+    """
+    Splits the data to train, validation and test subsets randomly
+    :param data_dir: directory location of the data
+    :param test: the portion of the data to use as test (default is 0.2)
+    :return: split the data to test and train
+    """
 
     print('Deleting old files...')
     os.chdir(data_dir)

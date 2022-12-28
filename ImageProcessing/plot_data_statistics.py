@@ -7,6 +7,7 @@ def plot_data_statistics(target_dir):
     plot the number of images im a bar graph
 
     :param target_dir: target_dir: target directory (path)
+    :return plots data statistics
     """
 
     # collecting all images in both classes
@@ -33,6 +34,11 @@ def plot_data_statistics(target_dir):
 
 
 def plot_train_test(target_dir):
+    """
+    plot the number of images in a bar graph after splitting to test and train
+    :param target_dir: target directory
+    :return: plots the data distribution
+    """
     # get the value counts
     train_no = len(os.listdir(target_dir + '\\train\\no'))
     train_yes = len(os.listdir(target_dir + '\\train\\yes'))

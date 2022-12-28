@@ -1,6 +1,3 @@
-"""
-BUILD CNN
-"""
 import tensorflow as tf
 
 

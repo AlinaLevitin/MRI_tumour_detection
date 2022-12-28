@@ -1,14 +1,12 @@
-"""
-Function to crop images
-"""
-
 import cv2
 import imutils
 
 
 def crop_image(image):
     """
-    Function to crop images
+    function to crop images
+    :param image: image after mpimg.imread
+    :return:
     """
     # convert to 8 bit image
     image_8bit = cv2.convertScaleAbs(image)
@@ -26,16 +24,17 @@ def crop_image(image):
     # threshold the image by Binary Thresholding
     thresh = cv2.threshold(gray, 45, 255, cv2.THRESH_BINARY)[1]
 
-    # perform a series of erosions & dilations to remove any small regions of noise
+    # perform a series of erosion's & dilation's to remove any small regions of noise
     thresh = cv2.erode(thresh, None, iterations=2)
     thresh = cv2.dilate(thresh, None, iterations=2)
 
-    # find contours in thresholded image, then grab the largest one
+    # find contours in threshold image, then grab the largest one
     cnts = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     cnts = imutils.grab_contours(cnts)
     c = max(cnts, key=cv2.contourArea, default=0)
 
     # find the extreme points
+    # if they are 0 return the original image
     if not isinstance(c, int):
         extLeft = tuple(c[c[:, :, 0].argmin()][0])
         extRight = tuple(c[c[:, :, 0].argmax()][0])

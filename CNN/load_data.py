@@ -1,7 +1,3 @@
-"""
-Load data from folders
-"""
-
 import tensorflow as tf
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 

@@ -1,8 +1,4 @@
-"""
-function to view a bulk of images of both classes
-"""
 import os
-
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 import random
@@ -15,6 +11,7 @@ def view_random_images(target_dir, target_classes=('yes', 'no'), img_num=25):
     :param target_dir: target directory (path)
     :param target_classes: selected classes to show (default is both classes)
     :param img_num: number of images to show
+    :return shows random images in each class
     """
 
     # making a figure for each class
