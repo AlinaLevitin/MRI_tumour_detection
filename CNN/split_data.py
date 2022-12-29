@@ -15,6 +15,7 @@ def split_data(data_dir, test=0.2):
     print('Deleting old files...')
     os.chdir(data_dir)
     target_dir = os.path.dirname(os.getcwd()) + '\\aug_data'
+    os.makedirs(target_dir, exist_ok=True)
 
     for files in os.listdir(target_dir):
         path = os.path.join(target_dir, files)

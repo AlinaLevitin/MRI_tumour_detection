@@ -4,7 +4,7 @@ CNN neural network to classify MRI brain images to positive/negative for tumour
 ## **Data**
 
 I used data from two sources on Kaggle.
-One with [250](https://www.kaggle.com/datasets/navoneel/brain-mri-images-for-brain-tumor-detection) and the second with [3000](https://www.kaggle.com/datasets/navoneel/brain-mri-images-for-brain-tumor-detection)
+One with [250](https://www.kaggle.com/datasets/navoneel/brain-mri-images-for-brain-tumor-detection) and the second with [3000](https://www.kaggle.com/datasets/abhranta/brain-tumor-detection-mri)
 images of brain MRI images with or without tumors.
 
 ## **Data preprocessing**
