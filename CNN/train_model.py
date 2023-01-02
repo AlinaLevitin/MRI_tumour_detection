@@ -2,14 +2,13 @@ import os
 import matplotlib.pyplot as plt
 
 
-def train_model(model, epochs, training_data, validation_data, target_dir):
+def train_model(model, epochs, training_data, validation_data):
     """
     function to train the model with training data and validation data
     :param model: selected tensorflow.keras.sequential model
     :param epochs: number of epochs to train
     :param training_data: training data
     :param validation_data: validation data
-    :param target_dir: directory to save the model at
     :return: trains the model and creates a plot of the accuracy and loss vs epoch
     """
 
@@ -20,9 +19,6 @@ def train_model(model, epochs, training_data, validation_data, target_dir):
                         validation_data=validation_data,
                         validation_steps=len(validation_data)
                         )
-    os.chdir(target_dir)
-    model.save('trained_model')
-    print(f'Model was saved to {target_dir+ "/trained_model.h5"}')
 
     # plot the accuracy and loss vs epoch
     plt.figure(figsize=(8, 8))

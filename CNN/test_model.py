@@ -28,6 +28,7 @@ def test_model(model, test_data):
 
     # confusion matrix
     cm = confusion_matrix(y_true, tf.round(y_pred))
+    print(cm)
 
     # normalizing the confusion matrix for percentages
     cm_norm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]

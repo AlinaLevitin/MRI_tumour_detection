@@ -22,19 +22,21 @@ def load_data(target_dir):
     test_datagen = ImageDataGenerator(rescale=1. / 255)
 
     # Import data from directories and turn it into batches with augmented data
+    print('Train data:')
     training_data = train_datagen.flow_from_directory(directory=target_dir + '\\train',
                                                       subset="training",
                                                       batch_size=32,
                                                       target_size=(224, 224),
                                                       class_mode='binary',
                                                       seed=42)
+    print('Validation data:')
     validation_data = train_datagen.flow_from_directory(directory=target_dir + '\\train',
                                                         subset="validation",
                                                         batch_size=32,
                                                         target_size=(224, 224),
                                                         class_mode='binary',
                                                         seed=42)
-
+    print('Test data')
     test_data = test_datagen.flow_from_directory(directory=target_dir + '\\test',
                                                  batch_size=32,
                                                  target_size=(224, 224),
