@@ -36,11 +36,12 @@ def load_data(target_dir):
                                                         target_size=(224, 224),
                                                         class_mode='binary',
                                                         seed=42)
-    print('Test data')
+    print('Test data:')
     test_data = test_datagen.flow_from_directory(directory=target_dir + '\\test',
-                                                 batch_size=32,
+                                                 # batch_size=32,
                                                  target_size=(224, 224),
                                                  class_mode='binary',
+                                                 shuffle=False,
                                                  seed=42)
 
     return training_data, validation_data, test_data

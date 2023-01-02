@@ -1,5 +1,7 @@
 import os
 
+import tensorflow as tf
+
 import ImageProcessing
 import CNN
 
@@ -25,12 +27,13 @@ training_data, validation_data, test_data = CNN.load_data(aug_data)
 
 # CNN.plot_train_val_test(training_data, validation_data, test_data)
 
-model = CNN.build_model()
+# model = CNN.build_model()
 
-CNN.train_model(model, epochs=18, training_data=training_data, validation_data=validation_data)
+# CNN.train_model(model, epochs=18, training_data=training_data, validation_data=validation_data)
 
-CNN.save_model(model, target_dir=cwd)
+# CNN.save_model(model, target_dir=cwd)
 
-CNN.load_model(target_dir=cwd)
+model = CNN.load_model(target_dir=cwd)
 
 CNN.test_model(model, test_data)
+

@@ -22,12 +22,14 @@ def test_model(model, test_data):
 
     # making prediction on the data
     y_pred = model.predict(test_data)
+    print(y_pred)
+    print(tf.round(y_pred))
 
     # the true labels
     y_true = test_data.labels
 
     # confusion matrix
-    cm = confusion_matrix(y_true, tf.round(y_pred))
+    cm = confusion_matrix(y_true, y_pred.round(0))
     print(cm)
 
     # normalizing the confusion matrix for percentages
